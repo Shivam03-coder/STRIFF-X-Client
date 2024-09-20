@@ -1,0 +1,27 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export interface initialStateTypes {
+  isSidebarOpen: boolean;
+  isdarkMode: boolean;
+}
+
+const initialState: initialStateTypes = {
+  isSidebarOpen: false,
+  isdarkMode: false,
+};
+
+const applicationState = createSlice({
+  name: "app-state",
+  initialState,
+  reducers: {
+    setisSidebarOpen: (state, action: PayloadAction<boolean>) => {
+      state.isSidebarOpen = true;
+    },
+    setisdarkMode: (state, action: PayloadAction<boolean>) => {
+      state.isdarkMode = true;
+    },
+  },
+});
+
+export const { setisSidebarOpen, setisdarkMode } = applicationState.actions;
+export default applicationState.reducer;
