@@ -7,8 +7,8 @@ const Sidebar = () => {
   const [ShowSidebar, setShowSidebar] = useState(false);
   return (
     <section className="dark:bg-dark-primary fixed z-40 flex h-[100%] flex-col justify-between overflow-y-auto shadow-xl transition-all duration-300">
-      <div className="flex h-[100%] w-full flex-col justify-start">
-        <div className="z-50 flex min-h-16 w-64 items-center justify-center bg-secondary-200">
+      <div className="flex h-[100%] w-full flex-col justify-start dark:text-secondary-100">
+        <div className="z-50 flex min-h-16 w-64 items-center justify-center bg-secondary-200 dark:bg-primary-500">
           <div className="font-Varela text-2xl font-bold tracking-wide">
             MANAGE-META
           </div>
@@ -18,7 +18,7 @@ const Sidebar = () => {
           <div className="font-TitilliumWeb text-base font-medium">
             <h3 className="tracking-wider">@ META-TEAM</h3>
             <div className="mt-1 flex items-center gap-2">
-              <Lock className="mt-1 size-4 dark:text-secondary-100" />
+              <Lock className="mt-1 size-4 " />
               <p className="text-sm mt-2 opacity-85 font-medium" >Private</p>
             </div>
           </div>

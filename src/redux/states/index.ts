@@ -18,7 +18,7 @@ const applicationState = createSlice({
       state.isSidebarOpen = true;
     },
     setisdarkMode: (state, action: PayloadAction<boolean>) => {
-      state.isdarkMode = true;
+      state.isdarkMode = action.payload;
     },
   },
 });
