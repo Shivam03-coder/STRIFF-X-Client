@@ -13,13 +13,12 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       document.documentElement.classList.remove("dark");
     }
   }, [isdarkMode]);
-  
 
   return (
     <div className="flex min-h-screen w-full bg-secondary-300 text-primary-600">
       <Sidebar />
       <main
-        className={`flex w-full flex-col bg-secondary-300 dark:bg-dark-primary ${isSidebarOpen ? "md:pl-64" : ""}`}
+        className={`flex w-full flex-col bg-secondary-300 dark:bg-dark-primary ${isSidebarOpen ? "md:pl-72" : ""}`}
       >
         <Navbar />
         {children}

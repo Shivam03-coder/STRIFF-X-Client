@@ -19,19 +19,22 @@ const Navbar = () => {
       {/* SEARCH BAR */}
       <div className="flex items-center gap-8">
         {!isSidebarOpen ? null : (
-          <button onClick={() => dispatch(setisSidebarOpen(!isSidebarOpen))}>
-            <AlignJustify />
+          <button
+            className="rounded-xl p-2 hover:bg-secondary-100 dark:hover:bg-primary-400"
+            onClick={() => dispatch(setisSidebarOpen(!isSidebarOpen))}
+          >
+            <AlignJustify className="size-7 dark:text-dark-secondary" />
           </button>
         )}
         <div className="relative flex h-min w-[230px]">
-          <Search className="absolute top-[50%] ml-2 size-6 -translate-y-1/2 cursor-pointer dark:text-secondary-300" />
+          <Search className="absolute top-[50%] ml-2 size-6 -translate-y-1/2 cursor-pointer dark:text-primary-600" />
           <Input />
         </div>
       </div>
       {/* ICONS */}
       <div className="flex items-center">
         <button
-          className={`${isdarkMode ? "rounded p-2 text-secondary-100 dark:hover:bg-secondary-100 dark:hover:text-primary-700" : "rounded p-2 hover:bg-secondary-100"} mr-2`}
+          className={`${isdarkMode ? "rounded-xl p-2 text-dark-secondary dark:hover:bg-primary-400" : "rounded p-2 hover:bg-secondary-100"} mr-2`}
           onClick={() => dispatch(setisdarkMode(!isdarkMode))}
         >
           {isdarkMode ? (
@@ -42,17 +45,16 @@ const Navbar = () => {
         </button>
         <Link
           href="/app-settings"
-          className="size-min rounded p-2 hover:bg-secondary-100 dark:text-secondary-300 dark:hover:bg-secondary-100 dark:hover:text-primary-700"
+          className="size-min rounded-xl p-2 dark:text-dark-secondary dark:hover:bg-primary-400"
         >
           <SlidersHorizontal className="size-7 cursor-pointer" />
         </Link>
-        <div className="ml-4 mr-5 min-h-[2rem] w-[0.1rem] bg-secondary-100 text-secondary-100 md:inline-block"></div>
-        <Link
+        {/* <Link
           href="/authentication"
           className="size-min rounded p-2 hover:bg-secondary-100 dark:text-secondary-300 dark:hover:bg-secondary-100 dark:hover:text-primary-700"
         >
           <Fingerprint className="size-7 cursor-pointer" />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
