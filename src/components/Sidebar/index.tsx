@@ -16,10 +16,15 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   return (
     <section
-      className={`fixed z-50 flex h-[100%] flex-col justify-between overflow-y-auto shadow-xl bg-secondary-300 transition-all duration-300 dark:bg-dark-primary overflow-x-hidden ${isSidebarOpen ? "hidden w-0" : "w-72"}`}
+      className={`fixed z-50 flex h-[100%] flex-col justify-between overflow-y-auto overflow-x-hidden bg-secondary-300 shadow-xl transition-all duration-300 dark:bg-dark-primary ${isSidebarOpen ? "hidden w-0" : "w-72"}`}
+      style={{
+        overflow: "scroll",
+        msOverflowStyle: "none",
+        scrollbarWidth: "none",
+      }}
     >
       <div className="flex h-[100%] w-full flex-col justify-start dark:text-secondary-100">
-        <div className="z-50 flex min-h-16 w-72  items-center justify-between bg-secondary-200 px-6 dark:bg-primary-500">
+        <div className="z-50 flex min-h-16 w-72 items-center justify-between bg-secondary-200 px-6 dark:bg-primary-500">
           <div className="text-2xl font-bold tracking-wide">STRIFF-X</div>
           {!isSidebarOpen ? (
             <button

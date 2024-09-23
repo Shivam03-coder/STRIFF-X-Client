@@ -22,10 +22,10 @@ const SidebarLinks = ({ href, icon: Icon, label }: sidebarLinkspropTypes) => {
   return (
     <Link href={href} className="w-full">
       <div
-        className={`relative flex cursor-pointer items-center gap-4 px-6 py-3 transition-colors hover:bg-secondary-100  dark:hover:bg-primary-400 ${isActive ? "bg-secondary-100 dark:bg-primary-300" : ""} `}
+        className={`relative flex cursor-pointer items-center gap-4 px-6 py-3 transition-colors hover:bg-secondary-100 dark:hover:bg-primary-400 ${isActive ? "bg-secondary-100 dark:bg-primary-300" : ""} `}
       >
         {isActive && (
-          <div className="bg-blue-400 absolute left-0 top-0 h-[100%] w-[3px]" />
+          <div className="absolute left-0 top-0 h-[100%] w-[3px] bg-blue-400" />
         )}
         <Icon className="size-6 text-primary-700 dark:text-tertiary-500" />
         <h3 className="text-lg font-medium text-primary-700 opacity-70 dark:text-tertiary-500">

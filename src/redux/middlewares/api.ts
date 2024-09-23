@@ -1,12 +1,13 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,  credentials: 'include',  
+  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+  credentials: "include",
 });
 
 export const ApiService = createApi({
   baseQuery,
   reducerPath: "api",
-  tagTypes: [],
+  tagTypes: ["Projects", "Tasks"],
   endpoints: (build) => ({}),
 });
