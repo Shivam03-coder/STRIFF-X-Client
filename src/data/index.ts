@@ -85,6 +85,7 @@ export const projectAccordionLinksData: Array<sideBarLinkDataTypes> = [
     label: "Home",
   },
 ];
+
 export const prioritytAccordionLinksData: Array<sideBarLinkDataTypes> = [
   {
     href: "/priority/urgent",
@@ -111,4 +112,11 @@ export const prioritytAccordionLinksData: Array<sideBarLinkDataTypes> = [
     icon: BringToFront,
     label: "Backlog",
   },
+];
+
+export const TaskStatusData: Array<string> = [
+  "To Do",
+  "Work in Progress",
+  "Under Review",
+  "Completed",
 ];

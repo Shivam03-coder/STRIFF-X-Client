@@ -1,18 +1,20 @@
 import { ApiService } from "../middlewares/api";
-import { ProjectDataType, TaskDataType } from "./interfaces";
-const headers = {
-  "content-type": "application/json",
-};
+import { Projects, TaskDataType } from "./interfaces";
 
 const ApiendPoints = ApiService.injectEndpoints({
   endpoints: (build) => ({
-    getProjects: build.query<ProjectDataType[], void>({
+    getProjects: build.query<Projects[], void>({
       query: () => ({
         url: "/projects",
       }),
-      providesTags: ["Projects"], // USE TO REFTCH PROJECTS IN OUR APP
+      providesTags: ["Projects"],
+      transformResponse: (
+        results: { response: { data: Array<Projects> } },
+        meta,
+        arg,
+      ) => results.response.data,
     }),
-    createProjects: build.mutation<ProjectDataType, Partial<ProjectDataType>>({
+    createProjects: build.mutation<Projects, Partial<Projects>>({
       query: (prjectInfo) => ({
         url: "/projects/create",
         method: "POST",
@@ -23,13 +25,19 @@ const ApiendPoints = ApiService.injectEndpoints({
 
     getTask: build.query<TaskDataType[], { projectId: number }>({
       query: ({ projectId }) => ({
-        url: `/taskss?projectId=${projectId}`,
+        url: `/tasks?projectId=${projectId}`,
       }),
       // This will make only affected task to get refetch not all task make to optimize the code
       providesTags: (results) =>
         results
-          ? results.map(({ id }) => ({ type: "Tasks" as const, id }))
+          ? results?.map(({ id }) => ({ type: "Tasks" as const, id }))
           : [{ type: "Tasks" as const }],
+
+      transformResponse: (
+        results: { response: { data: Array<TaskDataType> } },
+        meta,
+        arg,
+      ) => results.response.data,
     }),
 
     createTasks: build.mutation<TaskDataType, Partial<TaskDataType>>({

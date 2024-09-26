@@ -1,5 +1,12 @@
 "use client";
-import { ChevronDown, ChevronUp, CircleX, Home, Lock } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  CircleX,
+  FolderOpenDot,
+  Home,
+  Lock,
+} from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import SidebarLinks from "./sidebarlinks";
@@ -7,15 +14,17 @@ import { useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { setisSidebarOpen } from "@/redux/states";
 import { prioritytAccordionLinksData, sideBarLinksData } from "@/data";
-
+import { useGetProjectsQuery } from "@/redux/endpoints";
 const Sidebar = () => {
   const [ShowSidebar, setShowSidebar] = useState(false);
   const { isSidebarOpen } = useAppSelector((state) => state.global);
   const [ShowProjectsAccordion, setShowProjectsAccordion] = useState(false);
   const [ShowPriorityAccordion, setShowPriorityAccordion] = useState(false);
   const dispatch = useDispatch();
+  const { data: Projects } = useGetProjectsQuery();
+
   return (
-    <section
+    <div
       className={`fixed z-50 flex h-[100%] flex-col justify-between overflow-y-auto overflow-x-hidden bg-secondary-300 shadow-xl transition-all duration-300 dark:bg-dark-primary ${isSidebarOpen ? "hidden w-0" : "w-72"}`}
       style={{
         overflow: "scroll",
@@ -50,7 +59,7 @@ const Sidebar = () => {
         {/* NAVBAR LINKS */}
         <nav className="z-10 w-full">
           {sideBarLinksData.map(({ href, icon, label }, i) => (
-            <SidebarLinks href={href} icon={icon} label={label} />
+            <SidebarLinks key={href} href={href} icon={icon} label={label} />
           ))}
         </nav>
         <button
@@ -64,10 +73,15 @@ const Sidebar = () => {
             <ChevronDown className="size-6" />
           )}
         </button>
-        {ShowProjectsAccordion && (
+        {ShowProjectsAccordion || (
           <>
-            {sideBarLinksData.map(({ href, icon, label }, i) => (
-              <SidebarLinks href={href} icon={icon} label={label} />
+            {Projects?.map(({ id, name }, i) => (
+              <SidebarLinks
+                key={id}
+                href={`/projects/${id}`}
+                icon={FolderOpenDot}
+                label={name}
+              />
             ))}
           </>
         )}
@@ -90,7 +104,7 @@ const Sidebar = () => {
           </>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 
