@@ -116,7 +116,7 @@ export const prioritytAccordionLinksData: Array<sideBarLinkDataTypes> = [
 
 export const TaskStatusData: Array<string> = [
   "To Do",
-  "Work in Progress",
+  "Work In Progress",
   "Under Review",
   "Completed",
 ];

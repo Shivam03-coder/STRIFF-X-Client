@@ -9,6 +9,8 @@ type boardProps = {
   setIsTaskModelOpen: (isOpen: boolean) => void;
 };
 
+// BOARD COMPONENT
+
 const Board = ({ id, setIsTaskModelOpen }: boardProps) => {
   const {
     data: Tasks,
@@ -53,6 +55,8 @@ interface TaskColumnDatatype {
   setIsTaskModelOpen: (isOpen: boolean) => void;
 }
 
+// TASK COLUMN COMPONENT
+
 const TaskColumn = ({
   key,
   Tasks,
@@ -72,10 +76,10 @@ const TaskColumn = ({
   const taksCount = Tasks.filter((task) => task.status === status).length;
 
   const statusColor: any = {
-    "To Do": "#2563EB",
-    "Work In Progress": "#059669",
-    "Under Review": "#D97706",
-    Completed: "#00000o",
+    "To Do": "#6439FF",
+    "Work In Progress": "#FF6600",
+    "Under Review": "#FCCD2A",
+    Completed: "#73EC8B",
   };
 
   return (
@@ -90,9 +94,10 @@ const TaskColumn = ({
           style={{
             backgroundColor: statusColor[status],
           }}
-          className={`w-2 !bg-[${statusColor[status]}] rounded-s-lg`}
-        >
-          
+          className={`w-2 rounded-s-lg`}
+        />
+        <div className="flex w-full items-center rounded-e-lg bg-secondary-200 p-5 dark:bg-dark-secondary">
+          <h3 className="flex items-center text-lg dark:text-primary-700">{status}</h3>
         </div>
       </div>
     </div>
