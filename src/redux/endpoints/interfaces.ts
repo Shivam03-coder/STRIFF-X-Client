@@ -45,15 +45,15 @@ export interface TaskDataType {
 }
 
 export enum PriorityDataType {
+  High = "High",
+  Urgent = "Urgent",
+  Medium = "Medium",
+  Backlog = "Backlog",
+}
+
+export enum StatusDataType {
   ToDo = "To Do",
   WorkInProgress = "Work In Progress",
   UnderReview = "Under Review",
   Completed = "Completed",
-}
-
-export enum StatusDataType {
-  High = "High",
-  Urgent = "Urgent",
-  Low = "Low",
-  Backlog = "Backlog",
 }
