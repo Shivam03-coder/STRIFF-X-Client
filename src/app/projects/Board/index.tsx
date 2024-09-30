@@ -2,15 +2,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { TaskStatusData } from "@/data";
 import { useGetTaskQuery, useUpdateTasksMutation } from "@/redux/endpoints";
-import {
-  PriorityDataType,
-  StatusDataType,
-  TaskDataType,
-} from "@/redux/endpoints/interfaces";
+import { PriorityDataType, TaskDataType } from "@/redux/endpoints/interfaces";
 import { format } from "date-fns";
 import { EllipsisVerticalIcon, Plus } from "lucide-react";
 import Image from "next/image";
-import { DndProvider, DragSourceMonitor, useDrag, useDrop } from "react-dnd";
+import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 type boardProps = {
@@ -29,16 +25,10 @@ const Board = ({ id, setIsTaskModelOpen }: boardProps) => {
 
   const ChangeStatusOftask = async (taskId: number, newStatus: string) => {
     try {
-      const response = await UpdateTaskStatus({
+      await UpdateTaskStatus({
         taskId: taskId,
         status: newStatus,
       });
-
-      if (response.error) {
-        console.error("Error updating task status:", response.error);
-      } else {
-        console.log("Task status updated successfully:", response.data);
-      }
     } catch (error) {
       console.error("Unexpected error:", error);
     }
@@ -73,70 +63,67 @@ interface TaskColumnDatatype {
 }
 
 // TASK COLUMN COMPONENT
-import { forwardRef } from "react";
+const TaskColumn = ({
+  status,
+  Tasks,
+  ChangeStatusOftask,
+  setIsTaskModelOpen,
+}: TaskColumnDatatype) => {
+  const [{ isOver }, drop] = useDrop({
+    accept: "task",
+    drop: (item: { id: number }) => ChangeStatusOftask(item.id, status),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
+  });
 
-const TaskColumn = forwardRef<HTMLDivElement, TaskColumnDatatype>(
-  ({ status, Tasks, ChangeStatusOftask, setIsTaskModelOpen }, ref) => {
-    const [{ isOver }, drop] = useDrop(() => ({
-      accept: "task",
-      drop: (item: { id: number }) => ChangeStatusOftask(item.id, status),
-      collect: (monitor) => ({
-        isOver: !!monitor.isOver(),
-      }),
-    }));
+  const taskCount = Tasks.filter((task) => task.status === status).length;
 
-    const taskCount = Tasks.filter((task) => task.status === status).length;
+  const statusColor: Record<string, string> = {
+    "To Do": "#6439FF",
+    "Work In Progress": "#FF6600",
+    "Under Review": "#FCCD2A",
+    Completed: "#73EC8B",
+  };
 
-    const statusColor: Record<string, string> = {
-      "To Do": "#6439FF",
-      "Work In Progress": "#FF6600",
-      "Under Review": "#FCCD2A",
-      Completed: "#73EC8B",
-    };
-
-    return (
-      <div
-        ref={(instance) => {
-          drop(instance); // Use drop to attach the drop target ref
-        }}
-        className={`rounded-lg py-2 sm:py-4 xl:px-2 ${isOver ? "bg-blue-50 dark:bg-primary-300" : ""}`}
-      >
-        <div className="mb-3 flex w-full">
-          <div
-            style={{ backgroundColor: statusColor[status] }}
-            className="w-2 rounded-s-lg"
-          />
-          <div className="flex w-full items-center justify-between rounded-e-lg bg-secondary-200 p-5 dark:bg-dark-secondary">
-            <h3 className="flex items-center gap-2 text-lg dark:text-primary-700">
-              {status}{" "}
-              <Badge
-                className="rounded-full border-none text-sm"
-                style={{ backgroundColor: statusColor[status] }}
-              >
-                {taskCount}
-              </Badge>
-            </h3>
-            <div className="flex items-center gap-1">
-              <button className="flex-center size-6">
-                <EllipsisVerticalIcon
-                  onClick={() => setIsTaskModelOpen(true)}
-                />
-              </button>
-              <button className="flex-center size-6">
-                <Plus />
-              </button>
-            </div>
+  return (
+    <div
+      ref={(instance) => {
+        drop(instance);
+      }}
+      className={`rounded-lg py-2 sm:py-4 xl:px-2 ${isOver ? "bg-blue-50 dark:bg-primary-300" : ""}`}
+    >
+      <div className="mb-3 flex w-full">
+        <div
+          style={{ backgroundColor: statusColor[status] }}
+          className="w-2 rounded-s-lg"
+        />
+        <div className="flex w-full items-center justify-between rounded-e-lg bg-secondary-200 p-5 dark:bg-dark-secondary">
+          <h3 className="flex items-center gap-2 text-lg dark:text-primary-700">
+            {status}{" "}
+            <Badge
+              className="rounded-full border-none text-sm"
+              style={{ backgroundColor: statusColor[status] }}
+            >
+              {taskCount}
+            </Badge>
+          </h3>
+          <div className="flex items-center gap-1">
+            <button className="flex-center size-6">
+              <EllipsisVerticalIcon onClick={() => setIsTaskModelOpen(true)} />
+            </button>
+            <button className="flex-center size-6">
+              <Plus />
+            </button>
           </div>
         </div>
-        {Tasks.filter((task) => task.status === status).map((task) => (
-          <TaskComponent key={task.id} task={task} />
-        ))}
       </div>
-    );
-  },
-);
-
-TaskColumn.displayName = "TaskColumn"; // Optional but recommended for better debugging
+      {Tasks.filter((task) => task.status === status).map((task) => (
+        <TaskComponent key={task.id} task={task} />
+      ))}
+    </div>
+  );
+};
 
 type TaskPropType = {
   task: TaskDataType;
@@ -146,7 +133,7 @@ const TaskComponent = ({ task }: TaskPropType) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "task",
     item: { id: task.id },
-    collect: (monitor: DragSourceMonitor) => ({
+    collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
   }));
@@ -246,19 +233,7 @@ const TaskComponent = ({ task }: TaskPropType) => {
             </AvatarFallback>
           </Avatar>
         )}
-        {task.assignee && (
-          <Avatar>
-            <AvatarImage
-              width={30}
-              height={30}
-              src={`/${task.assignee?.profilePictureUrl!}`}
-            />
-            <AvatarFallback>
-              {task.assignee?.username?.charAt(0).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
-        )}
-        <span className="text-xs">{numberOfComments} comments</span>
+        <div>{numberOfComments} comments</div>
       </div>
     </div>
   );
