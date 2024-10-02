@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "@/components/ui/sonner";
 import localFont from "next/font/local";
 import "./globals.css";
 import AppWrapper from "./appwrapper";
@@ -31,6 +32,7 @@ export default function RootLayout({
       >
         <AppWrapper>{children}</AppWrapper>
         <div id="Moadalproject-root"></div>
+        <Toaster />
       </body>
     </html>
   );

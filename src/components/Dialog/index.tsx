@@ -14,7 +14,6 @@ const DialogBox = ({ children, isOpen, onClose }: DialogProps) => {
   if (!isOpen) return null;
   return createPortal(
     <section>
-      <Header name="SHIVAM ANAND" />
       <Dialog open={isOpen} onOpenChange={onClose}>
         {children}
       </Dialog>
