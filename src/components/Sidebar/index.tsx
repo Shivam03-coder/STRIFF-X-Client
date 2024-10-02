@@ -91,9 +91,9 @@ const Sidebar = () => {
         >
           <span className="text-lg font-medium opacity-70">Priority</span>
           {ShowPriorityAccordion ? (
-            <ChevronUp className="size-6" />
-          ) : (
             <ChevronDown className="size-6" />
+          ) : (
+            <ChevronUp className="size-6" />
           )}
         </button>
         {ShowPriorityAccordion && (

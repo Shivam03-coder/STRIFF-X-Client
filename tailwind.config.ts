@@ -47,6 +47,10 @@ const config: Config = {
       "dark-tertiary": "#6EACDA",
       darken: "rgba(0,0,0,0.7)",
       fadedarken: "rgba(0,0,0,0.6)",
+      "stroke-dark": "#4A4A4A",
+      "dark-bg": "#121212",
+      "neutral-500": "#6B7280",
+      white: '#ffffff',
     },
     fontFamily: {
       Roboto: ["Roboto", "sans-serif"],
