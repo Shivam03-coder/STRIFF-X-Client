@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
 
 type TableProps = {
   id: string;
@@ -33,6 +34,17 @@ const TableComponent = ({ id, setIsTaskModelOpen }: TableProps) => {
 
   return (
     <div className="px-4 xl:px-6">
+      <div className="flex flex-wrap items-center justify-between gap-2 py-5">
+        <h1 className="me-2 text-lg font-bold dark:text-secondary-300">
+          TABLE
+        </h1>
+        <Button
+            onClick={() => setIsTaskModelOpen(true)}
+            className="bg-blue py-2 text-secondary-300"
+          >
+            ADD NEW TASK
+          </Button>
+      </div>
       <Table>
         <TableHeader>
           <TableRow className="bg-secondary-100">
@@ -52,14 +64,12 @@ const TableComponent = ({ id, setIsTaskModelOpen }: TableProps) => {
               <TableCell>
                 <span
                   className={`rounded-full p-1 ${
-                    task.priority
-                      ? `bg-[${statusColors[task.priority]}]`
-                      : ""
+                    task.priority ? `bg-[${statusColors[task.priority]}]` : ""
                   }`}
                   style={{
                     backgroundColor: task.priority
                       ? statusColors[task.priority]
-                      : "#D1D5DB", 
+                      : "#D1D5DB",
                     color: "#ffffff",
                   }}
                 >

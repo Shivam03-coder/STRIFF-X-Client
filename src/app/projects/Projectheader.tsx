@@ -1,17 +1,42 @@
-import Hedaer from "@/components/Header";
+import Header from "@/components/Header";
 import { Input } from "@/components/ui/input";
-import { Clock, FilterIcon, Grid3X3, List, Share, Share2 } from "lucide-react";
-import React from "react";
+import {
+  Clock,
+  FilterIcon,
+  Grid3X3,
+  List,
+  Plus,
+  Share,
+  Share2,
+} from "lucide-react";
+import React, { useState } from "react";
+import MoadalNewProject from "./MoadalNewProject";
+import { Button } from "@/components/ui/button";
 type Props = {
   setActiveTab: (tab: string) => void;
   ActiveTab: string;
 };
 
 const Projectheader = ({ ActiveTab, setActiveTab }: Props) => {
+  const [IsModalNewProjectOpen, setIsModalNewProjectOpen] =
+    useState<boolean>(false);
   return (
     <div className="px-4 xl:px-6">
       <div className="py-6 lg:py-4">
-        <Hedaer name="PROJECT DEVELOPMENT" />
+        <MoadalNewProject
+          isOpen={IsModalNewProjectOpen}
+          onClose={() => setIsModalNewProjectOpen(!IsModalNewProjectOpen)}
+        />
+        <div className="flex items-center justify-between px-3 lg:px-6">
+          <Header name="PROJECT DEVELOPMENT" />
+          <Button
+            onClick={() => setIsModalNewProjectOpen(true)}
+            className="flex items-center bg-blue px-2 py-2 text-secondary-300"
+          >
+            <Plus />
+            ADD NEW TASK
+          </Button>
+        </div>
         <div className="flex flex-wrap-reverse gap-2 border-y border-secondary-100 pb-2 pt-2 dark:border-secondary-100 md:bg-center">
           <div className="flex flex-1 items-center gap-4 md:gap-4">
             <TabButton

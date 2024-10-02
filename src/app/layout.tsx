@@ -30,6 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AppWrapper>{children}</AppWrapper>
+        <div id="Moadalproject-root"></div>
       </body>
     </html>
   );
