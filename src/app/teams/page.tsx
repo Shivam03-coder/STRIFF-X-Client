@@ -26,7 +26,7 @@ const TeamPage = () => {
             <TableHead className="w-[100px]">Username</TableHead>
             <TableHead>Team ID</TableHead>
             <TableHead>Team-Name</TableHead>
-            <TableHead>Manager <Id></Id></TableHead>
+            <TableHead>Manager Id</TableHead>
             <TableHead>Owner Id</TableHead>
           </TableRow>
         </TableHeader>
