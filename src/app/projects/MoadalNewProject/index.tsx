@@ -12,6 +12,7 @@ import { useFormik } from "formik";
 import { toast } from "sonner";
 import { DateData } from "@/utils";
 import { useCreateProjectsMutation } from "@/redux/endpoints";
+import { formatISO } from "date-fns";
 
 type ModelProps = {
   isOpen: boolean;
@@ -31,8 +32,12 @@ const MoadalNewProject = ({ isOpen, onClose }: ModelProps) => {
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
-      const resp = await CreateNewProject(values);
-      console.log("🚀 ~ onSubmit:async ~ resp:", resp);
+      const formattedValues = {
+        ...values,
+        startDate: formatISO(values.startDate, { representation: "complete" }),
+        endDate: formatISO(values.endDate, { representation: "complete" }),
+      };
+      const resp = await CreateNewProject(formattedValues);
       toast("Project has been created", {
         description: `${date.formattedDate} at ${date.formattedTime}`,
       });

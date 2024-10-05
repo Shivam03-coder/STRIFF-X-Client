@@ -38,12 +38,6 @@ const TableComponent = ({ id, setIsTaskModelOpen }: TableProps) => {
         <h1 className="me-2 text-lg font-bold dark:text-secondary-300">
           TABLE
         </h1>
-        <Button
-            onClick={() => setIsTaskModelOpen(true)}
-            className="bg-blue py-2 text-secondary-300"
-          >
-            ADD NEW TASK
-          </Button>
       </div>
       <Table>
         <TableHeader>

@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="flex items-center gap-8">
         {!isSidebarOpen ? null : (
           <button
-            className="rounded-xl p-2 hover:bg-secondary-100 dark:hover:bg-primary-400"
+            className="rounded-xl p-2 hover:bg-secondary-100 "
             onClick={() => dispatch(setisSidebarOpen(!isSidebarOpen))}
           >
             <AlignJustify className="size-7 dark:text-dark-secondary" />
@@ -33,21 +33,11 @@ const Navbar = () => {
       </div>
       {/* ICONS */}
       <div className="flex items-center">
-        <button
-          className={`${isdarkMode ? "rounded-xl p-2 text-dark-secondary dark:hover:bg-primary-400" : "rounded p-2 hover:bg-secondary-100"} mr-2`}
-          onClick={() => dispatch(setisdarkMode(!isdarkMode))}
-        >
-          {isdarkMode ? (
-            <Sun className="size-7 cursor-pointer" />
-          ) : (
-            <Moon className="size-7 cursor-pointer" />
-          )}
-        </button>
         <Link
           href="/app-settings"
-          className="size-min rounded-xl p-2 dark:text-dark-secondary dark:hover:bg-primary-400"
+          className="size-min rounded-xl p-2 hover:bg-secondary-100 "
         >
-          <SlidersHorizontal className="size-7 cursor-pointer" />
+          <SlidersHorizontal className="rounded-xl size-7  "/>
         </Link>
         {/* <Link
           href="/authentication"

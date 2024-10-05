@@ -1,14 +1,5 @@
 import Header from "@/components/Header";
-import { Input } from "@/components/ui/input";
-import {
-  Clock,
-  FilterIcon,
-  Grid3X3,
-  List,
-  Plus,
-  Share,
-  Share2,
-} from "lucide-react";
+import { Clock, FilterIcon, Grid3X3, List, Plus, Share2 } from "lucide-react";
 import React, { useState } from "react";
 import MoadalNewProject from "./MoadalNewProject";
 import { Button } from "@/components/ui/button";
@@ -34,7 +25,7 @@ const Projectheader = ({ ActiveTab, setActiveTab }: Props) => {
             className="flex items-center bg-blue px-2 py-2 text-secondary-300"
           >
             <Plus />
-            ADD NEW TASK
+            ADD NEW BOARD
           </Button>
         </div>
         <div className="flex flex-wrap-reverse gap-2 border-y border-secondary-100 pb-2 pt-2 dark:border-secondary-100 md:bg-center">

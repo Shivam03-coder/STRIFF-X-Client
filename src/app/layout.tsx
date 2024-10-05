@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "STRIFFX-03",
+  title: "STRIFF-X",
   description: "Project Management Application",
 };
 
@@ -27,6 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+         <head>
+        <link rel="icon" href="/faviocn.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
