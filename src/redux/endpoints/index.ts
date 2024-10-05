@@ -1,5 +1,11 @@
 import { ApiService } from "../middlewares/api";
-import { Projects, SearchResultsType, TaskDataType } from "./interfaces";
+import {
+  Projects,
+  SearchResultsType,
+  TaskDataType,
+  UsersType,
+  UserType,
+} from "./interfaces";
 
 const ApiendPoints = ApiService.injectEndpoints({
   endpoints: (build) => ({
@@ -67,6 +73,12 @@ const ApiendPoints = ApiService.injectEndpoints({
         url: `/search?query=${query}`,
       }),
     }),
+    users: build.query<UsersType, void>({
+      query: () => ({
+        url: `/users`,
+      }),
+      providesTags: ["Users"],
+    }),
   }),
 });
 
@@ -77,4 +89,5 @@ export const {
   useGetTaskQuery,
   useUpdateTasksMutation,
   useSearchQuery,
+  useUsersQuery,
 } = ApiendPoints;

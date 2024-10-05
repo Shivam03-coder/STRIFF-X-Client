@@ -63,3 +63,7 @@ export interface SearchResultsType {
   Users?: UserType[];
   Projects?: Projects[];
 }
+
+export interface UsersType {
+  Users?: UserType[];
+}
