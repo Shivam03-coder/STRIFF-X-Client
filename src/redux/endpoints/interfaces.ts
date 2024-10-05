@@ -1,6 +1,6 @@
 export interface Projects {
   id: number;
-  name : string;
+  name: string;
   description?: string;
   startDate?: string;
   endDate?: string;
@@ -56,4 +56,10 @@ export enum StatusDataType {
   WorkInProgress = "Work In Progress",
   UnderReview = "Under Review",
   Completed = "Completed",
+}
+
+export interface SearchResultsType {
+  Tasks?: TaskDataType[];
+  Users?: UserType[];
+  Projects?: Projects[];
 }

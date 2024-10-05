@@ -14,14 +14,10 @@ export interface sidebarLinkspropTypes {
 const SidebarLinks = ({ href, icon: Icon, label }: sidebarLinkspropTypes) => {
   const pathName = usePathname();
   const isActive =
-    
-  pathName === href || (pathName === "/" && href === "/dashboard");
+    pathName === href || (pathName === "/" && href === "/dashboard");
   if (typeof window !== "undefined") {
     const screenWidth = window.innerWidth;
   }
-  
-  const { isSidebarOpen } = useAppSelector((state) => state.global);
-  const dispatch = useDispatch();
 
   return (
     <Link href={href} className="w-full">

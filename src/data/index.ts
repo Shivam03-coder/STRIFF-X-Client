@@ -37,11 +37,6 @@ export const sideBarLinksData: Array<sideBarLinkDataTypes> = [
     label: "Search",
   },
   {
-    href: "/settings",
-    icon: UserCog,
-    label: "Settings",
-  },
-  {
     href: "/users",
     icon: UserRound,
     label: "User",
