@@ -3,6 +3,7 @@ import {
   Projects,
   SearchResultsType,
   TaskDataType,
+  Team,
   UsersType,
   UserType,
 } from "./interfaces";
@@ -73,11 +74,15 @@ const ApiendPoints = ApiService.injectEndpoints({
         url: `/search?query=${query}`,
       }),
     }),
-    users: build.query<UsersType, void>({
+    getusers: build.query<UsersType, void>({
       query: () => ({
         url: `/users`,
       }),
       providesTags: ["Users"],
+    }),
+    getTeams: build.query<Team[], void>({
+      query: () => "/teams",
+      providesTags: ["Teams"],
     }),
   }),
 });
@@ -89,5 +94,6 @@ export const {
   useGetTaskQuery,
   useUpdateTasksMutation,
   useSearchQuery,
-  useUsersQuery,
+  useGetusersQuery,
+  useGetTeamsQuery,
 } = ApiendPoints;

@@ -67,3 +67,10 @@ export interface SearchResultsType {
 export interface UsersType {
   Users?: UserType[];
 }
+
+export interface Team {
+  teamId: number;
+  teamName: string;
+  productOwnerUserId?: number;
+  projectManagerUserId?: number;
+}

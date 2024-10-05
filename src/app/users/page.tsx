@@ -1,6 +1,6 @@
 "use client";
 
-import { useUsersQuery } from "@/redux/endpoints";
+import { useGetusersQuery } from "@/redux/endpoints";
 import {
   Table,
   TableBody,
@@ -13,7 +13,7 @@ import {
 import Image from "next/image";
 
 const UsersPage = () => {
-  const { data: results, isError, isLoading } = useUsersQuery();
+  const { data: results, isError, isLoading } = useGetusersQuery();
   console.log("🚀 ~ UsersPage ~ results:", results);
 
   if (isLoading) return <div>Loading...</div>;
@@ -24,7 +24,7 @@ const UsersPage = () => {
       <Table className="p-7">
         <TableCaption>A list of registered users.</TableCaption>
         <TableHeader>
-          <TableRow className="bg-secondary-100">
+        <TableRow className="bg-secondary-100">
             <TableHead className="w-[100px]">Username</TableHead>
             <TableHead>Team ID</TableHead>
             <TableHead>CognitoId</TableHead>

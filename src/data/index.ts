@@ -42,7 +42,7 @@ export const sideBarLinksData: Array<sideBarLinkDataTypes> = [
     label: "User",
   },
   {
-    href: "/Teams",
+    href: "/teams",
     icon: UsersRound,
     label: "Teams",
   },
