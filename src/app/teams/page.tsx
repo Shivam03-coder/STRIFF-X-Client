@@ -20,7 +20,6 @@ const TeamPage = () => {
   return (
     <div className="px-4 xl:px-6">
       <Table className="p-7">
-        <TableCaption>A list of registered users.</TableCaption>
         <TableHeader>
           <TableRow className="bg-secondary-100">
             <TableHead className="w-[100px]">Username</TableHead>
