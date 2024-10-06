@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 type TableProps = {
   id: string;
-  setIsTaskModelOpen: (isOpen: boolean) => void;
+  setIsTaskModelOpen ?: (isOpen: boolean) => void;
 };
 
 const TableComponent = ({ id, setIsTaskModelOpen }: TableProps) => {

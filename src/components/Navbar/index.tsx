@@ -39,12 +39,12 @@ const Navbar = () => {
         >
           <SlidersHorizontal className="rounded-xl size-7  "/>
         </Link>
-        {/* <Link
+        <Link
           href="/authentication"
           className="size-min rounded p-2 hover:bg-secondary-100 dark:text-secondary-300 dark:hover:bg-secondary-100 dark:hover:text-primary-700"
         >
           <Fingerprint className="size-7 cursor-pointer" />
-        </Link> */}
+        </Link>
       </div>
     </div>
   );

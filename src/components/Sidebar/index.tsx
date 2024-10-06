@@ -68,9 +68,9 @@ const Sidebar = () => {
         >
           <span className="text-lg font-medium opacity-70">Projects</span>
           {ShowProjectsAccordion ? (
-            <ChevronUp className="size-6" />
-          ) : (
             <ChevronDown className="size-6" />
+          ) : (
+            <ChevronUp className="size-6" />
           )}
         </button>
         {ShowProjectsAccordion || (
