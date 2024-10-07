@@ -46,6 +46,21 @@ const ApiendPoints = ApiService.injectEndpoints({
         arg,
       ) => results.response.data,
     }),
+    getTaskbyPriority: build.query<TaskDataType[], number>({
+      query: (userId) => ({
+        url: `/prioritytasks/${userId}`,
+      }),
+      providesTags: (results, error, userId) =>
+        results
+          ? results.map(({ id }) => ({ type: "Tasks" as const, id }))
+          : [{ type: "Tasks" as const, id: Number(userId) }],
+
+      transformResponse: (
+        results: { response: { data: Array<TaskDataType> } },
+        meta,
+        arg,
+      ) => results.response.data,
+    }),
 
     createTasks: build.mutation<TaskDataType, Partial<TaskDataType>>({
       query: (taskInfo) => ({
@@ -96,4 +111,5 @@ export const {
   useSearchQuery,
   useGetusersQuery,
   useGetTeamsQuery,
+  useGetTaskbyPriorityQuery,
 } = ApiendPoints;

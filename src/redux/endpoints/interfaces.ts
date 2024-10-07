@@ -49,6 +49,7 @@ export enum PriorityDataType {
   Urgent = "Urgent",
   Medium = "Medium",
   Backlog = "Backlog",
+  Low = "Low",
 }
 
 export enum StatusDataType {
